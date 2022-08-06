@@ -1,25 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+
+// Components
+import GameTitle from "./components/GameTitle";
+import Board from "./components/Board";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="App">
+      <section className="min-h-screen pt-6 pb-8 flex flex-col items-center bg-gradient-to-t from-indigo-300 to-purple-300">
+        <GameTitle />
+        <Board />
+      </section>
+    </main>
   );
 }
 
