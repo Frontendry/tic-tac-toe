@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from "react";
 
 // Configs
 import { Children, BoardContextValues } from "../configs/interfaces/interface";
-import { playerX } from "../configs/contants/constant";
+import { playerX, noWinner } from "../configs/contants/constant";
 
 const createContextInitialVal: BoardContextValues = {
   currentPlayer: null,
@@ -20,7 +20,7 @@ const BoardContext = createContext(createContextInitialVal);
 
 export const BoardContextProvider = ({ children }: Children) => {
   const [currentPlayer, setCurrentPlayer] = useState<string>(playerX);
-  const [winner, setWinner] = useState<string>("");
+  const [winner, setWinner] = useState<string>(noWinner);
   const [playerXMoves, setPlayerXMoves] = useState<number[]>([]);
   const [playerOMoves, setPlayerOMoves] = useState<number[]>([]);
 

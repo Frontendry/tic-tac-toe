@@ -51,7 +51,17 @@ const Square = ({ specialClasses, value }: SquareProps) => {
 
         handleClick(value);
       }}
-    ></button>
+    >
+      <span className="font-bold text-4xl">
+        {playerXMoves !== null && playerXMoves.includes(value) ? (
+          <span className="text-rose-700">X</span>
+        ) : playerOMoves !== null && playerOMoves.includes(value) ? (
+          <span className="text-blue-700">0</span>
+        ) : (
+          ""
+        )}
+      </span>
+    </button>
   );
 };
 
