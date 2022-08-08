@@ -1,6 +1,6 @@
 // Configs
 import { SquareProps } from "../../configs/interfaces/interface";
-import { playerO, playerX } from "../../configs/contants/constant";
+import { playerO, playerX, noWinner } from "../../configs/contants/constant";
 
 // Context
 import { useBoardContext } from "../../context/BoardContext";
@@ -14,6 +14,7 @@ const Square = ({ specialClasses, value }: SquareProps) => {
     setPlayerOMoves,
     currentPlayer,
     setCurrentPlayer,
+    winner,
   } = useBoardContext();
 
   const handleClick = (value: number) => {
@@ -45,7 +46,11 @@ const Square = ({ specialClasses, value }: SquareProps) => {
       }`}
       type="button"
       onClick={() => {
-        if (playerOMoves?.includes(value) || playerXMoves?.includes(value)) {
+        if (
+          playerOMoves?.includes(value) ||
+          playerXMoves?.includes(value) ||
+          winner !== noWinner
+        ) {
           return;
         }
 
