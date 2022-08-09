@@ -1,5 +1,5 @@
 // Node Modules
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, MutableRefObject } from "react";
 
 // Configs
 import { Children, BoardContextValues } from "../configs/interfaces/interface";
@@ -14,6 +14,8 @@ const createContextInitialVal: BoardContextValues = {
   setPlayerXMoves: null,
   playerOMoves: null,
   setPlayerOMoves: null,
+  refButtonValue: null,
+  setRefButtonValue: null,
 };
 
 const BoardContext = createContext(createContextInitialVal);
@@ -23,6 +25,8 @@ export const BoardContextProvider = ({ children }: Children) => {
   const [winner, setWinner] = useState<string>(noWinner);
   const [playerXMoves, setPlayerXMoves] = useState<number[]>([]);
   const [playerOMoves, setPlayerOMoves] = useState<number[]>([]);
+  const [refButtonValue, setRefButtonValue] =
+    useState<MutableRefObject<HTMLButtonElement | null> | null>(null);
 
   const value: BoardContextValues = {
     currentPlayer,
@@ -33,6 +37,8 @@ export const BoardContextProvider = ({ children }: Children) => {
     setPlayerXMoves,
     playerOMoves,
     setPlayerOMoves,
+    refButtonValue,
+    setRefButtonValue,
   };
 
   return (

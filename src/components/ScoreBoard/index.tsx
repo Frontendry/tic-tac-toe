@@ -7,6 +7,13 @@ import { playerO, playerX, noWinner } from "../../configs/contants/constant";
 // Context
 import { useBoardContext } from "../../context/BoardContext";
 
+// Winning Combos
+import {
+  rowWinningCombos,
+  columnWinningCombos,
+  diagonalWinningCombos,
+} from "../../configs/utils/utils";
+
 // Components
 import PlayerScore from "../PlayerScore";
 
@@ -15,23 +22,6 @@ const ScoreBoard = () => {
     useBoardContext();
 
   useEffect(() => {
-    const rowWinningCombos = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-    ];
-
-    const columnWinningCombos = [
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-    ];
-
-    const diagonalWinningCombos = [
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
-
     const directionWinner = (
       playerXValues: number[],
       playerOValues: number[],

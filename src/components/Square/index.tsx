@@ -1,3 +1,6 @@
+// React
+import { useRef, useEffect } from "react";
+
 // Configs
 import { SquareProps } from "../../configs/interfaces/interface";
 import { playerO, playerX, noWinner } from "../../configs/contants/constant";
@@ -5,7 +8,7 @@ import { playerO, playerX, noWinner } from "../../configs/contants/constant";
 // Context
 import { useBoardContext } from "../../context/BoardContext";
 
-const Square = ({ specialClasses, value }: SquareProps) => {
+const Square = ({ value }: SquareProps) => {
   // BoardContext Data
   const {
     playerXMoves,
@@ -15,7 +18,19 @@ const Square = ({ specialClasses, value }: SquareProps) => {
     currentPlayer,
     setCurrentPlayer,
     winner,
+    refButtonValue,
+    setRefButtonValue,
   } = useBoardContext();
+
+  const squareButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    if (!squareButtonRef) {
+      return;
+    }
+
+    setRefButtonValue !== null && setRefButtonValue(squareButtonRef);
+  }, [setRefButtonValue]);
 
   const handleClick = (value: number) => {
     if (currentPlayer === playerX) {
@@ -39,34 +54,54 @@ const Square = ({ specialClasses, value }: SquareProps) => {
     }
   };
 
-  return (
-    <button
-      className={`aspect-square border-white${
-        specialClasses ? ` ${specialClasses}` : ""
-      }`}
-      type="button"
-      onClick={() => {
-        if (
-          playerOMoves?.includes(value) ||
-          playerXMoves?.includes(value) ||
-          winner !== noWinner
-        ) {
-          return;
-        }
+  const specialClasses = (value: number) => {
+    let classes: string;
 
-        handleClick(value);
-      }}
-    >
-      <span className="font-bold text-4xl">
-        {playerXMoves !== null && playerXMoves.includes(value) ? (
-          <span className="text-rose-700">X</span>
-        ) : playerOMoves !== null && playerOMoves.includes(value) ? (
-          <span className="text-blue-700">0</span>
-        ) : (
-          ""
-        )}
-      </span>
-    </button>
+    if (value === 0 || value === 1) {
+      classes = " border-r";
+    } else if (value === 3 || value === 4 || value === 6 || value === 7) {
+      classes = " border-r border-t";
+    } else if (value === 5 || value === 8) {
+      classes = " border-t";
+    } else {
+      classes = "";
+    }
+
+    return classes;
+  };
+
+  /*  const refValue =  */
+
+  return (
+    <>
+      <button
+        className={`aspect-square border-white${specialClasses(value)}`}
+        type="button"
+        data-square-id={`square-id-${value}`}
+        onClick={() => {
+          if (
+            playerOMoves?.includes(value) ||
+            playerXMoves?.includes(value) ||
+            winner !== noWinner
+          ) {
+            return;
+          }
+
+          handleClick(value);
+        }}
+        ref={refButtonValue}
+      >
+        <span className="font-bold text-4xl">
+          {playerXMoves !== null && playerXMoves.includes(value) ? (
+            <span className="text-rose-700">X</span>
+          ) : playerOMoves !== null && playerOMoves.includes(value) ? (
+            <span className="text-blue-700">0</span>
+          ) : (
+            ""
+          )}
+        </span>
+      </button>
+    </>
   );
 };
 
