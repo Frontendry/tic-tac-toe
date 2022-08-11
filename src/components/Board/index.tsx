@@ -1,3 +1,5 @@
+import { createRef, useRef } from "react";
+
 // Context
 import { BoardContextProvider } from "../../context/BoardContext";
 
@@ -11,14 +13,29 @@ import Square from "../Square";
 import ComputerPlayer from "../ComputerPlayer";
 
 const Board = () => {
+  const squareRefs = useRef([]);
+  squareRefs.current = squareOptions.map(
+    (_, i) => squareRefs.current[i] ?? createRef()
+  );
+
+  /*  const addToRefs: (el : never ) => void = (el) => {
+    if (el && !squareRefs.current.includes(el)) {
+      squareRefs.current.push(el);
+    }
+  }; */
+
   return (
     <>
       <BoardContextProvider>
         <ScoreBoard />
 
         <div className="grid grid-cols-3 w-1/4">
-          {squareOptions.map((squareVal) => (
-            <Square key={`square-${squareVal}`} value={squareVal} />
+          {squareOptions.map((squareVal, index) => (
+            <Square
+              key={`square-${squareVal}`}
+              value={squareVal}
+              ref={squareRefs.current[index]}
+            />
           ))}
         </div>
 

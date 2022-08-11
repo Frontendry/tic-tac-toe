@@ -13,28 +13,15 @@ export interface BoardContextValues {
   setPlayerXMoves: React.Dispatch<React.SetStateAction<number[]>> | null;
   playerOMoves: number[] | null;
   setPlayerOMoves: React.Dispatch<React.SetStateAction<number[]>> | null;
-  refButtonValue: MutableRefObject<HTMLButtonElement | null> | null;
+  refButtonValue: React.MutableRefObject<never[]> | null;
   setRefButtonValue: React.Dispatch<
-    React.SetStateAction<MutableRefObject<HTMLButtonElement | null> | null>
+    React.SetStateAction<React.MutableRefObject<never[]>>
   > | null;
-  /*  refButtonValue:
-    | HTMLSpanElement
-    | LegacyRef<HTMLSpanElement>
-    | DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>
-    | null;
-
-  setRefButtonValue: React.Dispatch<
-    React.SetStateAction<
-      | HTMLSpanElement
-      | LegacyRef<HTMLSpanElement>
-      | DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>
-      | null
-    >
-  > | null; */
 }
 
 export interface SquareProps {
   value: number;
+  ref: React.Ref<HTMLButtonElement>;
 }
 
 export interface PlayerScoreProps {

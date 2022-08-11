@@ -1,6 +1,3 @@
-// React
-import { useRef, useEffect } from "react";
-
 // Configs
 import { SquareProps } from "../../configs/interfaces/interface";
 import { playerO, playerX, noWinner } from "../../configs/contants/constant";
@@ -18,19 +15,7 @@ const Square = ({ value }: SquareProps) => {
     currentPlayer,
     setCurrentPlayer,
     winner,
-    refButtonValue,
-    setRefButtonValue,
   } = useBoardContext();
-
-  const squareButtonRef = useRef<HTMLButtonElement | null>(null);
-
-  useEffect(() => {
-    if (!squareButtonRef) {
-      return;
-    }
-
-    setRefButtonValue !== null && setRefButtonValue(squareButtonRef);
-  }, [setRefButtonValue]);
 
   const handleClick = (value: number) => {
     if (currentPlayer === playerX) {
@@ -73,35 +58,32 @@ const Square = ({ value }: SquareProps) => {
   /*  const refValue =  */
 
   return (
-    <>
-      <button
-        className={`aspect-square border-white${specialClasses(value)}`}
-        type="button"
-        data-square-id={`square-id-${value}`}
-        onClick={() => {
-          if (
-            playerOMoves?.includes(value) ||
-            playerXMoves?.includes(value) ||
-            winner !== noWinner
-          ) {
-            return;
-          }
+    <button
+      className={`aspect-square border-white${specialClasses(value)}`}
+      type="button"
+      data-square-id={`square-id-${value}`}
+      onClick={() => {
+        if (
+          playerOMoves?.includes(value) ||
+          playerXMoves?.includes(value) ||
+          winner !== noWinner
+        ) {
+          return;
+        }
 
-          handleClick(value);
-        }}
-        ref={refButtonValue}
-      >
-        <span className="font-bold text-4xl">
-          {playerXMoves !== null && playerXMoves.includes(value) ? (
-            <span className="text-rose-700">X</span>
-          ) : playerOMoves !== null && playerOMoves.includes(value) ? (
-            <span className="text-blue-700">0</span>
-          ) : (
-            ""
-          )}
-        </span>
-      </button>
-    </>
+        handleClick(value);
+      }}
+    >
+      <span className="font-bold text-4xl">
+        {playerXMoves !== null && playerXMoves.includes(value) ? (
+          <span className="text-rose-700">X</span>
+        ) : playerOMoves !== null && playerOMoves.includes(value) ? (
+          <span className="text-blue-700">0</span>
+        ) : (
+          ""
+        )}
+      </span>
+    </button>
   );
 };
 

@@ -18,7 +18,8 @@ import {
 } from "../../configs/utils/utils";
 
 const ComputerPlayer = () => {
-  const { playerXMoves, setPlayerOMoves, currentPlayer } = useBoardContext();
+  const { playerXMoves, setPlayerOMoves, currentPlayer, refButtonValue } =
+    useBoardContext();
 
   /*  useEffect(() => {
     if (playerXMoves !== null && playerXMoves.length > 0) {
@@ -30,7 +31,9 @@ const ComputerPlayer = () => {
   if (currentPlayer === playerO) {
     console.log("computer play");
     // get current player x moves
-    console.log(playerXMoves);
+    //console.log(playerXMoves);
+
+    console.log(refButtonValue);
   }
 
   return <></>;
