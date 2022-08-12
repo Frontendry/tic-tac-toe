@@ -31,8 +31,8 @@ const ComputerPlayer = ({ squares }: Props) => {
       let currentPlayerXMoves = playerXMoves;
       let currentPlayerComputerMoves = playerOMoves;
 
-      console.log(currentPlayerXMoves);
-      console.log(currentPlayerComputerMoves);
+      // console.log(currentPlayerXMoves);
+      // console.log(currentPlayerComputerMoves);
 
       // Get Combined Moves from PlayerX and PlayerO. Adding PlayerX Moves at the end to use it when configuring blocking strategy at blockingSquareItem() below.
       let totalMoves =
@@ -42,23 +42,32 @@ const ComputerPlayer = ({ squares }: Props) => {
           ? currentPlayerComputerMoves?.concat(currentPlayerXMoves)
           : currentPlayerXMoves;
 
-      console.log(totalMoves);
+      // console.log(totalMoves);
 
       // Remainder Moves from Combined Moves
       let remainderSquares = squareOptions.filter(
         (squareOption) => !totalMoves?.includes(squareOption)
       );
 
-      console.log(remainderSquares);
+      //  console.log(remainderSquares);
 
       // Random Remainder Move
       let randomItemFromRemaider =
         remainderSquares[Math.floor(Math.random() * remainderSquares.length)];
 
       // Block Player Advances
-      const blockingSquareItem = () => {
+      const blockingSquareItem = (playerXMoves: (string | number)[] | null) => {
         let squareItem;
+
+        const winningCombos = rowWinningCombos.concat(
+          columnWinningCombos,
+          diagonalWinningCombos
+        );
+
+        console.log(winningCombos);
       };
+
+      blockingSquareItem(playerXMoves);
 
       // Player X has to have more than 1 item so that blocking strategy is enabled.
       let squareToBeClicked: number = randomItemFromRemaider;
