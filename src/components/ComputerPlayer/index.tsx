@@ -1,5 +1,5 @@
 // React Stuff
-import React, { Ref, useEffect } from "react";
+import React, { RefObject, useEffect } from "react";
 
 // Context
 import { useBoardContext } from "../../context/BoardContext";
@@ -18,20 +18,36 @@ import {
 } from "../../configs/utils/utils";
 
 interface Props {
-  squares: (Ref<HTMLButtonElement> | undefined)[];
+  squares: (RefObject<HTMLButtonElement> | undefined)[];
 }
 
 const ComputerPlayer = ({ squares }: Props) => {
   const { playerXMoves, setPlayerOMoves, currentPlayer, refButtonValue } =
     useBoardContext();
 
-  console.log(squares);
-
-  /*  useEffect(() => {
+  useEffect(() => {
     if (playerXMoves !== null && playerXMoves.length > 0) {
-      console.log("computer play");
+      //console.log("computer play");
+
+      /* console.log(
+        typeof squares !== "undefined" &&
+          typeof squares[1] !== "undefined" &&
+          squares[1] !== null
+          ? squares[1].current
+          : ""
+      ); */
+
+      if (typeof squares[1] !== "undefined") {
+        squares[1].current?.click();
+      }
+
+      //console.log(typeof squares[1] !== "undefined" && squares[1].current);
+
+      /* if (squares !== null) {
+       
+      } */
     }
-  }, [playerXMoves]); */
+  }, [playerXMoves, squares]);
 
   // Set Computer Player as Player O
   if (currentPlayer === playerO) {

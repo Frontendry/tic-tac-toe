@@ -1,5 +1,5 @@
 // Node Modules
-import { createContext, useContext, useState, Ref } from "react";
+import { createContext, useContext, useState, RefObject } from "react";
 
 // Configs
 import { Children, BoardContextValues } from "../configs/interfaces/interface";
@@ -26,7 +26,7 @@ export const BoardContextProvider = ({ children }: Children) => {
   const [playerXMoves, setPlayerXMoves] = useState<(number | string)[]>([]);
   const [playerOMoves, setPlayerOMoves] = useState<(number | string)[]>([]);
   const [refButtonValue, setRefButtonValue] = useState<
-    (Ref<HTMLButtonElement> | undefined)[] | null
+    (RefObject<HTMLButtonElement> | undefined)[] | null
   >(null);
 
   const value: BoardContextValues = {

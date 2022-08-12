@@ -1,4 +1,4 @@
-import { Ref } from "react";
+import { RefObject } from "react";
 
 export interface Children {
   children: JSX.Element | JSX.Element[];
@@ -21,9 +21,9 @@ export interface BoardContextValues {
   setRefButtonValue: React.Dispatch<
     React.SetStateAction<React.MutableRefObject<never[]> | null>
   > | null; */
-  refButtonValue: (Ref<HTMLButtonElement> | undefined)[] | null;
+  refButtonValue: (RefObject<HTMLButtonElement> | undefined)[] | null;
   setRefButtonValue: React.Dispatch<
-    React.SetStateAction<(Ref<HTMLButtonElement> | undefined)[] | null>
+    React.SetStateAction<(RefObject<HTMLButtonElement> | undefined)[] | null>
   > | null;
 }
 
