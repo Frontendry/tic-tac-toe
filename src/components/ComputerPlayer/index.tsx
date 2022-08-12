@@ -22,40 +22,55 @@ interface Props {
 }
 
 const ComputerPlayer = ({ squares }: Props) => {
-  const { playerXMoves, setPlayerOMoves, currentPlayer, refButtonValue } =
-    useBoardContext();
+  const { playerXMoves, playerOMoves, currentPlayer } = useBoardContext();
 
   useEffect(() => {
-    if (playerXMoves !== null && playerXMoves.length > 0) {
-      //console.log("computer play");
+    if (currentPlayer === playerO) {
+      console.log("computer play");
 
-      /* console.log(
-        typeof squares !== "undefined" &&
-          typeof squares[1] !== "undefined" &&
-          squares[1] !== null
-          ? squares[1].current
-          : ""
-      ); */
+      let currentPlayerXMoves = playerXMoves;
+      let currentPlayerComputerMoves = playerOMoves;
 
-      if (typeof squares[1] !== "undefined") {
-        squares[1].current?.click();
+      console.log(currentPlayerXMoves);
+      console.log(currentPlayerComputerMoves);
+
+      // Get Combined Moves from PlayerX and PlayerO. Adding PlayerX Moves at the end to use it when configuring blocking strategy at blockingSquareItem() below.
+      let totalMoves =
+        currentPlayerXMoves &&
+        currentPlayerComputerMoves &&
+        currentPlayerComputerMoves?.length > 0
+          ? currentPlayerComputerMoves?.concat(currentPlayerXMoves)
+          : currentPlayerXMoves;
+
+      console.log(totalMoves);
+
+      // Remainder Moves from Combined Moves
+      let remainderSquares = squareOptions.filter(
+        (squareOption) => !totalMoves?.includes(squareOption)
+      );
+
+      console.log(remainderSquares);
+
+      // Random Remainder Move
+      let randomItemFromRemaider =
+        remainderSquares[Math.floor(Math.random() * remainderSquares.length)];
+
+      // Block Player Advances
+      const blockingSquareItem = () => {
+        let squareItem;
+      };
+
+      // Player X has to have more than 1 item so that blocking strategy is enabled.
+      let squareToBeClicked: number = randomItemFromRemaider;
+
+      // Trigger Square to be clicked
+      if (typeof squares[squareToBeClicked] !== "undefined") {
+        squares[squareToBeClicked]?.current?.click();
       }
-
-      //console.log(typeof squares[1] !== "undefined" && squares[1].current);
-
-      /* if (squares !== null) {
-       
-      } */
     }
-  }, [playerXMoves, squares]);
+  }, [currentPlayer, playerXMoves, playerOMoves, squares]);
 
   // Set Computer Player as Player O
-  if (currentPlayer === playerO) {
-    //console.log("computer play");
-    // get current player x moves
-    //console.log(playerXMoves);
-    //console.log(refButtonValue);
-  }
 
   return <></>;
 };
