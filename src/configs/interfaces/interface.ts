@@ -1,3 +1,5 @@
+import { Ref } from "react";
+
 export interface Children {
   children: JSX.Element | JSX.Element[];
 }
@@ -15,9 +17,13 @@ export interface BoardContextValues {
   setPlayerOMoves: React.Dispatch<
     React.SetStateAction<(number | string)[]>
   > | null;
-  refButtonValue: React.MutableRefObject<never[]> | null;
+  /*  refButtonValue: React.MutableRefObject<never[]> | null;
   setRefButtonValue: React.Dispatch<
     React.SetStateAction<React.MutableRefObject<never[]> | null>
+  > | null; */
+  refButtonValue: (Ref<HTMLButtonElement> | undefined)[] | null;
+  setRefButtonValue: React.Dispatch<
+    React.SetStateAction<(Ref<HTMLButtonElement> | undefined)[] | null>
   > | null;
 }
 

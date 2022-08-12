@@ -1,5 +1,5 @@
 // React Stuff
-import React, { useEffect } from "react";
+import React, { Ref, useEffect } from "react";
 
 // Context
 import { useBoardContext } from "../../context/BoardContext";
@@ -17,9 +17,15 @@ import {
   diagonalWinningCombos,
 } from "../../configs/utils/utils";
 
-const ComputerPlayer = () => {
+interface Props {
+  squares: (Ref<HTMLButtonElement> | undefined)[];
+}
+
+const ComputerPlayer = ({ squares }: Props) => {
   const { playerXMoves, setPlayerOMoves, currentPlayer, refButtonValue } =
     useBoardContext();
+
+  console.log(squares);
 
   /*  useEffect(() => {
     if (playerXMoves !== null && playerXMoves.length > 0) {
@@ -29,11 +35,10 @@ const ComputerPlayer = () => {
 
   // Set Computer Player as Player O
   if (currentPlayer === playerO) {
-    console.log("computer play");
+    //console.log("computer play");
     // get current player x moves
     //console.log(playerXMoves);
-
-    console.log(refButtonValue);
+    //console.log(refButtonValue);
   }
 
   return <></>;

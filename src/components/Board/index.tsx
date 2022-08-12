@@ -20,15 +20,26 @@ const Board = () => {
 
   const squareRefs = useRef<(Ref<HTMLButtonElement> | undefined)[]>([]);
 
+  /*  useEffect(() => {
+ 
+
+    squareRefs.current = squareOptions.map(
+      (_, i) => squareRefs.current[i] ?? createRef()
+    );
+
+    setRefButtonValue && setRefButtonValue(squareRefs.current);
+  }, [squareRefs, refButtonValue, setRefButtonValue]); */
+
   squareRefs.current = squareOptions.map(
     (_, i) => squareRefs.current[i] ?? createRef()
   );
+
+  //setRefButtonValue && setRefButtonValue(squareRefs.current);
 
   /*   setRefButtonValue && setRefButtonValue(squareRefs.current); */
 
   return (
     <>
-      {console.log(squareRefs.current)}
       <BoardContextProvider>
         <ScoreBoard />
 
@@ -38,11 +49,12 @@ const Board = () => {
               key={`square-${squareVal}`}
               squareVal={squareVal}
               ref={squareRefs.current[index]}
+              /* ref={refButtonValue && refButtonValue[index]} */
             />
           ))}
         </div>
 
-        <ComputerPlayer />
+        <ComputerPlayer squares={squareRefs.current} />
 
         <RestartGame />
       </BoardContextProvider>
