@@ -1,4 +1,4 @@
-import { createRef, useRef, useEffect } from "react";
+import { createRef, useRef, useEffect, Ref } from "react";
 
 // Context
 import {
@@ -18,7 +18,7 @@ import ComputerPlayer from "../ComputerPlayer";
 const Board = () => {
   const { refButtonValue, setRefButtonValue } = useBoardContext();
 
-  const squareRefs = useRef<HTMLButtonElement[]>([]);
+  const squareRefs = useRef<(Ref<HTMLButtonElement> | undefined)[]>([]);
 
   squareRefs.current = squareOptions.map(
     (_, i) => squareRefs.current[i] ?? createRef()

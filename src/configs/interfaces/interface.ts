@@ -23,7 +23,6 @@ export interface BoardContextValues {
 
 export interface SquareProps {
   squareVal: number | string;
-  //ref: React.Ref<HTMLButtonElement>;
 }
 
 export interface PlayerScoreProps {

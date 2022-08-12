@@ -1,4 +1,4 @@
-import { forwardRef, LegacyRef, Ref } from "react";
+import { forwardRef } from "react";
 
 // Configs
 import { SquareProps } from "../../configs/interfaces/interface";
