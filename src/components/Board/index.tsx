@@ -1,7 +1,10 @@
-import { createRef, useRef } from "react";
+import { createRef, useRef, useEffect } from "react";
 
 // Context
-import { BoardContextProvider } from "../../context/BoardContext";
+import {
+  BoardContextProvider,
+  useBoardContext,
+} from "../../context/BoardContext";
 
 // Utils
 import { squareOptions } from "../../configs/utils/utils";
@@ -13,19 +16,19 @@ import Square from "../Square";
 import ComputerPlayer from "../ComputerPlayer";
 
 const Board = () => {
-  const squareRefs = useRef([]);
+  const { refButtonValue, setRefButtonValue } = useBoardContext();
+
+  const squareRefs = useRef<HTMLButtonElement[]>([]);
+
   squareRefs.current = squareOptions.map(
     (_, i) => squareRefs.current[i] ?? createRef()
   );
 
-  /*  const addToRefs: (el : never ) => void = (el) => {
-    if (el && !squareRefs.current.includes(el)) {
-      squareRefs.current.push(el);
-    }
-  }; */
+  /*   setRefButtonValue && setRefButtonValue(squareRefs.current); */
 
   return (
     <>
+      {console.log(squareRefs.current)}
       <BoardContextProvider>
         <ScoreBoard />
 
@@ -33,7 +36,7 @@ const Board = () => {
           {squareOptions.map((squareVal, index) => (
             <Square
               key={`square-${squareVal}`}
-              value={squareVal}
+              squareVal={squareVal}
               ref={squareRefs.current[index]}
             />
           ))}

@@ -23,18 +23,18 @@ const ScoreBoard = () => {
 
   useEffect(() => {
     const directionWinner = (
-      playerXValues: number[],
-      playerOValues: number[],
+      playerXValues: (number | string)[],
+      playerOValues: (number | string)[],
       setwinner: React.Dispatch<React.SetStateAction<string>> | null,
       playerX: string,
       playerO: string,
       winningCombinations: number[][]
     ) => {
       const directionValueChecker = (
-        first: number,
-        middle: number,
-        last: number,
-        playerValues: number[],
+        first: number | string,
+        middle: number | string,
+        last: number | string,
+        playerValues: (number | string)[],
         player: string
       ) => {
         if (
@@ -70,8 +70,8 @@ const ScoreBoard = () => {
     };
 
     const determineWinner = (
-      playerXMoves: number[],
-      playerOMoves: number[]
+      playerXMoves: (number | string)[],
+      playerOMoves: (number | string)[]
     ) => {
       if (winner === noWinner) {
         // Check Row Winner

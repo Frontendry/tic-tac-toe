@@ -1,5 +1,3 @@
-import { MutableRefObject } from "react";
-
 export interface Children {
   children: JSX.Element | JSX.Element[];
 }
@@ -9,19 +7,23 @@ export interface BoardContextValues {
   setCurrentPlayer: React.Dispatch<React.SetStateAction<string>> | null;
   winner: string | null;
   setWinner: React.Dispatch<React.SetStateAction<string>> | null;
-  playerXMoves: number[] | null;
-  setPlayerXMoves: React.Dispatch<React.SetStateAction<number[]>> | null;
-  playerOMoves: number[] | null;
-  setPlayerOMoves: React.Dispatch<React.SetStateAction<number[]>> | null;
+  playerXMoves: (number | string)[] | null;
+  setPlayerXMoves: React.Dispatch<
+    React.SetStateAction<(number | string)[]>
+  > | null;
+  playerOMoves: (number | string)[] | null;
+  setPlayerOMoves: React.Dispatch<
+    React.SetStateAction<(number | string)[]>
+  > | null;
   refButtonValue: React.MutableRefObject<never[]> | null;
   setRefButtonValue: React.Dispatch<
-    React.SetStateAction<React.MutableRefObject<never[]>>
+    React.SetStateAction<React.MutableRefObject<never[]> | null>
   > | null;
 }
 
 export interface SquareProps {
-  value: number;
-  ref: React.Ref<HTMLButtonElement>;
+  squareVal: number | string;
+  //ref: React.Ref<HTMLButtonElement>;
 }
 
 export interface PlayerScoreProps {

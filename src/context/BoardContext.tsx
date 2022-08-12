@@ -23,10 +23,11 @@ const BoardContext = createContext(createContextInitialVal);
 export const BoardContextProvider = ({ children }: Children) => {
   const [currentPlayer, setCurrentPlayer] = useState<string>(playerX);
   const [winner, setWinner] = useState<string>(noWinner);
-  const [playerXMoves, setPlayerXMoves] = useState<number[]>([]);
-  const [playerOMoves, setPlayerOMoves] = useState<number[]>([]);
-  const [refButtonValue, setRefButtonValue] =
-    useState<MutableRefObject<HTMLButtonElement | null> | null>(null);
+  const [playerXMoves, setPlayerXMoves] = useState<(number | string)[]>([]);
+  const [playerOMoves, setPlayerOMoves] = useState<(number | string)[]>([]);
+  const [refButtonValue, setRefButtonValue] = useState<MutableRefObject<
+    never[]
+  > | null>(null);
 
   const value: BoardContextValues = {
     currentPlayer,
