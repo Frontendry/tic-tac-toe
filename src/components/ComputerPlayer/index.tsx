@@ -65,6 +65,19 @@ const ComputerPlayer = ({ squares }: Props) => {
         );
 
         console.log(winningCombos);
+
+        const checkerItems = [1, 2];
+        const checkerItemsString = checkerItems.join();
+
+        //console.log(checkerItemsString);
+
+        winningCombos.filter((winningCombo) => {
+          console.log();
+          let slicedArr = winningCombo.slice(0, 2) === checkerItems;
+
+          console.log(slicedArr);
+          return winningCombo;
+        });
       };
 
       blockingSquareItem(playerXMoves);
