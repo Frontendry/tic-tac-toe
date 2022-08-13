@@ -18,8 +18,17 @@ import {
 import PlayerScore from "../PlayerScore";
 
 const ScoreBoard = () => {
-  const { currentPlayer, winner, setWinner, playerOMoves, playerXMoves } =
-    useBoardContext();
+  const {
+    currentPlayer,
+    winner,
+    setWinner,
+    playerOMoves,
+    playerXMoves,
+    playerXScore,
+    setPlayerXScore,
+    playerOScore,
+    setPlayerOScore,
+  } = useBoardContext();
 
   useEffect(() => {
     const directionWinner = (
@@ -28,8 +37,20 @@ const ScoreBoard = () => {
       setwinner: React.Dispatch<React.SetStateAction<string>> | null,
       playerX: string,
       playerO: string,
-      winningCombinations: number[][]
+      winningCombinations: number[][],
+
+      setplayerxscore: React.Dispatch<React.SetStateAction<number>> | null,
+
+      setplayeroscore: React.Dispatch<React.SetStateAction<number>> | null
     ) => {
+      const scoreTally = (player: string) => {
+        if (player === playerX) {
+          setplayerxscore && setplayerxscore((prevCount) => prevCount + 1);
+        } else {
+          setplayeroscore && setplayeroscore((prevCount) => prevCount + 1);
+        }
+      };
+
       const directionValueChecker = (
         first: number | string,
         middle: number | string,
@@ -42,7 +63,8 @@ const ScoreBoard = () => {
           playerValues.includes(middle) &&
           playerValues.includes(last)
         ) {
-          return setwinner !== null && setwinner(player);
+          setwinner !== null && setwinner(player);
+          scoreTally(player);
         }
       };
 
@@ -81,7 +103,9 @@ const ScoreBoard = () => {
           setWinner,
           playerX,
           playerO,
-          rowWinningCombos
+          rowWinningCombos,
+          setPlayerXScore,
+          setPlayerOScore
         );
 
         // Check Column Winner
@@ -91,7 +115,9 @@ const ScoreBoard = () => {
           setWinner,
           playerX,
           playerO,
-          columnWinningCombos
+          columnWinningCombos,
+          setPlayerXScore,
+          setPlayerOScore
         );
 
         // Check Diagonal Winner
@@ -101,7 +127,9 @@ const ScoreBoard = () => {
           setWinner,
           playerX,
           playerO,
-          diagonalWinningCombos
+          diagonalWinningCombos,
+          setPlayerXScore,
+          setPlayerOScore
         );
       }
     };
@@ -109,7 +137,16 @@ const ScoreBoard = () => {
     if (playerXMoves !== null && playerOMoves !== null) {
       determineWinner(playerXMoves, playerOMoves);
     }
-  }, [playerXMoves, playerOMoves, winner, setWinner]);
+  }, [
+    playerXMoves,
+    playerOMoves,
+    winner,
+    setWinner,
+    playerXScore,
+    setPlayerXScore,
+    playerOScore,
+    setPlayerOScore,
+  ]);
 
   const renderGameStatus = (
     winner: string | null,
@@ -128,9 +165,10 @@ const ScoreBoard = () => {
 
   return (
     <>
+      {console.log(playerXScore)}
       <div className="grid grid-flow-col auto-cols-max gap-x-20 mb-4">
-        <PlayerScore playerName={playerX} score={0} />
-        <PlayerScore playerName={playerO} score={0} />
+        <PlayerScore playerName={playerX} score={playerXScore} />
+        <PlayerScore playerName={playerO} score={playerOScore} />
       </div>
 
       <div className="mb-6">

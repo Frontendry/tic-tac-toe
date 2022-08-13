@@ -14,6 +14,10 @@ const createContextInitialVal: BoardContextValues = {
   setPlayerXMoves: null,
   playerOMoves: null,
   setPlayerOMoves: null,
+  playerXScore: null,
+  setPlayerXScore: null,
+  playerOScore: null,
+  setPlayerOScore: null,
   /*  refButtonValue: null,
   setRefButtonValue: null, */
 };
@@ -25,6 +29,8 @@ export const BoardContextProvider = ({ children }: Children) => {
   const [winner, setWinner] = useState<string>(noWinner);
   const [playerXMoves, setPlayerXMoves] = useState<(number | string)[]>([]);
   const [playerOMoves, setPlayerOMoves] = useState<(number | string)[]>([]);
+  const [playerXScore, setPlayerXScore] = useState<number>(0);
+  const [playerOScore, setPlayerOScore] = useState<number>(0);
   /* const [refButtonValue, setRefButtonValue] = useState<
     (RefObject<HTMLButtonElement> | undefined)[] | null
   >(null); */
@@ -38,6 +44,10 @@ export const BoardContextProvider = ({ children }: Children) => {
     setPlayerXMoves,
     playerOMoves,
     setPlayerOMoves,
+    playerXScore,
+    setPlayerXScore,
+    playerOScore,
+    setPlayerOScore,
     /*    refButtonValue,
     setRefButtonValue, */
   };

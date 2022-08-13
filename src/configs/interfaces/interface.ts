@@ -17,6 +17,10 @@ export interface BoardContextValues {
   setPlayerOMoves: React.Dispatch<
     React.SetStateAction<(number | string)[]>
   > | null;
+  playerXScore: number | null;
+  setPlayerXScore: React.Dispatch<React.SetStateAction<number>> | null;
+  playerOScore: number | null;
+  setPlayerOScore: React.Dispatch<React.SetStateAction<number>> | null;
   /*  refButtonValue: (RefObject<HTMLButtonElement> | undefined)[] | null;
   setRefButtonValue: React.Dispatch<
     React.SetStateAction<(RefObject<HTMLButtonElement> | undefined)[] | null>
@@ -29,7 +33,7 @@ export interface SquareProps {
 
 export interface PlayerScoreProps {
   playerName: string;
-  score: number;
+  score: number | null;
 }
 
 export interface GameStatus {
