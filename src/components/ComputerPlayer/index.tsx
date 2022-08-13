@@ -21,13 +21,17 @@ interface Props {
   squares: (RefObject<HTMLButtonElement> | undefined)[];
 }
 
+// Total Winning Combos
+const winningCombos = rowWinningCombos.concat(
+  columnWinningCombos,
+  diagonalWinningCombos
+);
+
 const ComputerPlayer = ({ squares }: Props) => {
   const { playerXMoves, playerOMoves, currentPlayer } = useBoardContext();
 
   useEffect(() => {
     if (currentPlayer === playerO) {
-      console.log("computer play");
-
       let currentPlayerXMoves = playerXMoves;
       let currentPlayerComputerMoves = playerOMoves;
 
@@ -48,39 +52,41 @@ const ComputerPlayer = ({ squares }: Props) => {
       let remainderSquares = squareOptions.filter(
         (squareOption) => !totalMoves?.includes(squareOption)
       );
-
-      //  console.log(remainderSquares);
-
       // Random Remainder Move
       let randomItemFromRemaider =
         remainderSquares[Math.floor(Math.random() * remainderSquares.length)];
 
       // Block Player Advances
-      const blockingSquareItem = (playerXMoves: (string | number)[] | null) => {
-        let squareItem;
+      const blockingSquareItem = (
+        playerMoves: (string | number)[] | null,
+        winningCombos: (string | number)[][] | null,
+        randomItemInstead: string | number
+      ) => {
+        // Last 2 Player X Moves
+        //const checkerItems = playerMoves?.slice(-2);
+        const checkerItems = [3, 4];
 
-        const winningCombos = rowWinningCombos.concat(
-          columnWinningCombos,
-          diagonalWinningCombos
-        );
+        if (typeof checkerItems === "undefined") {
+          return;
+        }
 
-        console.log(winningCombos);
+        const filteredEl =
+          winningCombos &&
+          winningCombos.filter((winningCombo) => {
+            let slicedWinningComboArr = winningCombo.slice(0, 2);
 
-        const checkerItems = [1, 2];
-        const checkerItemsString = checkerItems.join();
+            return (
+              slicedWinningComboArr[0] === checkerItems[0] &&
+              slicedWinningComboArr[1] === checkerItems[1]
+            );
+          });
 
-        //console.log(checkerItemsString);
+        const blockingNumber = filteredEl && filteredEl[0][2];
 
-        winningCombos.filter((winningCombo) => {
-          console.log();
-          let slicedArr = winningCombo.slice(0, 2) === checkerItems;
-
-          console.log(slicedArr);
-          return winningCombo;
-        });
+        return filteredEl?.length === 0 ? randomItemInstead : blockingNumber;
       };
 
-      blockingSquareItem(playerXMoves);
+      blockingSquareItem(totalMoves, winningCombos, randomItemFromRemaider);
 
       // Player X has to have more than 1 item so that blocking strategy is enabled.
       let squareToBeClicked: number = randomItemFromRemaider;
