@@ -28,6 +28,7 @@ const ScoreBoard = () => {
     setPlayerXScore,
     playerOScore,
     setPlayerOScore,
+    setAnimateWinner,
   } = useBoardContext();
 
   useEffect(() => {
@@ -38,9 +39,7 @@ const ScoreBoard = () => {
       playerX: string,
       playerO: string,
       winningCombinations: number[][],
-
       setplayerxscore: React.Dispatch<React.SetStateAction<number>> | null,
-
       setplayeroscore: React.Dispatch<React.SetStateAction<number>> | null
     ) => {
       const scoreTally = (player: string) => {
@@ -96,41 +95,25 @@ const ScoreBoard = () => {
       playerOMoves: (number | string)[]
     ) => {
       if (winner === noWinner) {
-        // Check Row Winner
-        directionWinner(
-          playerXMoves,
-          playerOMoves,
-          setWinner,
-          playerX,
-          playerO,
+        const differentDirections = [
           rowWinningCombos,
-          setPlayerXScore,
-          setPlayerOScore
-        );
-
-        // Check Column Winner
-        directionWinner(
-          playerXMoves,
-          playerOMoves,
-          setWinner,
-          playerX,
-          playerO,
           columnWinningCombos,
-          setPlayerXScore,
-          setPlayerOScore
-        );
-
-        // Check Diagonal Winner
-        directionWinner(
-          playerXMoves,
-          playerOMoves,
-          setWinner,
-          playerX,
-          playerO,
           diagonalWinningCombos,
-          setPlayerXScore,
-          setPlayerOScore
-        );
+        ];
+
+        // Loop through the different winning directions
+        differentDirections.forEach((differentDirection) => {
+          directionWinner(
+            playerXMoves,
+            playerOMoves,
+            setWinner,
+            playerX,
+            playerO,
+            differentDirection,
+            setPlayerXScore,
+            setPlayerOScore
+          );
+        });
       }
     };
 
@@ -165,7 +148,6 @@ const ScoreBoard = () => {
 
   return (
     <>
-      {console.log(playerXScore)}
       <div className="grid grid-flow-col auto-cols-max gap-x-20 mb-4">
         <PlayerScore playerName={playerX} score={playerXScore} />
         <PlayerScore playerName={playerO} score={playerOScore} />

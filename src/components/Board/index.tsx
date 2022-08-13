@@ -14,6 +14,7 @@ import RestartGame from "../RestartGame";
 import ScoreBoard from "../ScoreBoard";
 import Square from "../Square";
 import ComputerPlayer from "../ComputerPlayer";
+import ClearBoard from "../ClearBoard";
 
 const Board = () => {
   const squareRefs = useRef<(RefObject<HTMLButtonElement> | undefined)[]>([]);
@@ -41,7 +42,11 @@ const Board = () => {
         // Feature coming soon...
         <ComputerPlayer squares={squareRefs.current} /> */}
 
-        <RestartGame />
+        <div className="flex items-center justify-center text-center mt-12">
+          <ClearBoard />
+          <span className="mx-5 text-white">or</span>
+          <RestartGame />
+        </div>
       </BoardContextProvider>
     </>
   );
