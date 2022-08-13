@@ -17,14 +17,10 @@ export interface BoardContextValues {
   setPlayerOMoves: React.Dispatch<
     React.SetStateAction<(number | string)[]>
   > | null;
-  /*  refButtonValue: React.MutableRefObject<never[]> | null;
-  setRefButtonValue: React.Dispatch<
-    React.SetStateAction<React.MutableRefObject<never[]> | null>
-  > | null; */
-  refButtonValue: (RefObject<HTMLButtonElement> | undefined)[] | null;
+  /*  refButtonValue: (RefObject<HTMLButtonElement> | undefined)[] | null;
   setRefButtonValue: React.Dispatch<
     React.SetStateAction<(RefObject<HTMLButtonElement> | undefined)[] | null>
-  > | null;
+  > | null; */
 }
 
 export interface SquareProps {

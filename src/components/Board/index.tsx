@@ -1,4 +1,4 @@
-import { createRef, useRef, useEffect, RefObject } from "react";
+import { createRef, useRef, RefObject } from "react";
 
 // Context
 import {
@@ -16,27 +16,11 @@ import Square from "../Square";
 import ComputerPlayer from "../ComputerPlayer";
 
 const Board = () => {
-  const { refButtonValue, setRefButtonValue } = useBoardContext();
-
   const squareRefs = useRef<(RefObject<HTMLButtonElement> | undefined)[]>([]);
-
-  /*  useEffect(() => {
- 
-
-    squareRefs.current = squareOptions.map(
-      (_, i) => squareRefs.current[i] ?? createRef()
-    );
-
-    setRefButtonValue && setRefButtonValue(squareRefs.current);
-  }, [squareRefs, refButtonValue, setRefButtonValue]); */
 
   squareRefs.current = squareOptions.map(
     (_, i) => squareRefs.current[i] ?? createRef()
   );
-
-  //setRefButtonValue && setRefButtonValue(squareRefs.current);
-
-  /*   setRefButtonValue && setRefButtonValue(squareRefs.current); */
 
   return (
     <>
@@ -49,12 +33,13 @@ const Board = () => {
               key={`square-${squareVal}`}
               squareVal={squareVal}
               ref={squareRefs.current[index]}
-              /* ref={refButtonValue && refButtonValue[index]} */
             />
           ))}
         </div>
 
-        <ComputerPlayer squares={squareRefs.current} />
+        {/* 
+        // Feature coming soon...
+        <ComputerPlayer squares={squareRefs.current} /> */}
 
         <RestartGame />
       </BoardContextProvider>
