@@ -7,7 +7,7 @@ import Board from "./components/Board";
 function App() {
   return (
     <main className="App">
-      <section className="min-h-screen pt-6 pb-8 flex flex-col items-center bg-gradient-to-t from-indigo-300 to-purple-300">
+      <section className="min-h-screen pt-6 pb-8 flex flex-col items-center bg-gradient-to-r from-rose-150 to-blue-300">
         <GameTitle />
         <Board />
       </section>

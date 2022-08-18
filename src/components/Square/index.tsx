@@ -85,7 +85,7 @@ const Square = forwardRef<RefType, SquareProps>((props, ref) => {
         {playerXMoves !== null && playerXMoves.includes(squareVal) ? (
           <span className="text-rose-700">X</span>
         ) : playerOMoves !== null && playerOMoves.includes(squareVal) ? (
-          <span className="text-blue-700">0</span>
+          <span className="text-sky-50">0</span>
         ) : (
           ""
         )}
