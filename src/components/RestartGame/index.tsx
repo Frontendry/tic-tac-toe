@@ -12,6 +12,7 @@ const RestartGame = () => {
     setWinner,
     setPlayerXScore,
     setPlayerOScore,
+    setWinningMoves,
   } = useBoardContext();
 
   const restartGame = () => {
@@ -21,6 +22,7 @@ const RestartGame = () => {
     setWinner !== null && setWinner(noWinner);
     setPlayerXScore !== null && setPlayerXScore(0);
     setPlayerOScore !== null && setPlayerOScore(0);
+    setWinningMoves !== null && setWinningMoves([]);
   };
 
   return (

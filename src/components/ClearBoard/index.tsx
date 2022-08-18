@@ -5,14 +5,20 @@ import { useBoardContext } from "../../context/BoardContext";
 import { noWinner, playerX } from "../../configs/contants/constant";
 
 const ClearBoard = () => {
-  const { setCurrentPlayer, setPlayerOMoves, setPlayerXMoves, setWinner } =
-    useBoardContext();
+  const {
+    setCurrentPlayer,
+    setPlayerOMoves,
+    setPlayerXMoves,
+    setWinner,
+    setWinningMoves,
+  } = useBoardContext();
 
   const clear = () => {
     setCurrentPlayer !== null && setCurrentPlayer(playerX);
     setPlayerOMoves !== null && setPlayerOMoves([]);
     setPlayerXMoves !== null && setPlayerXMoves([]);
     setWinner !== null && setWinner(noWinner);
+    setWinningMoves !== null && setWinningMoves([]);
   };
 
   return (

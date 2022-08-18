@@ -23,6 +23,10 @@ export interface BoardContextValues {
   setPlayerOScore: React.Dispatch<React.SetStateAction<number>> | null;
   animateWinner: boolean | null;
   setAnimateWinner: React.Dispatch<React.SetStateAction<boolean>> | null;
+  winningMoves: (number | string)[] | null;
+  setWinningMoves: React.Dispatch<
+    React.SetStateAction<(number | string)[]>
+  > | null;
   /*  refButtonValue: (RefObject<HTMLButtonElement> | undefined)[] | null;
   setRefButtonValue: React.Dispatch<
     React.SetStateAction<(RefObject<HTMLButtonElement> | undefined)[] | null>

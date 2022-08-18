@@ -29,6 +29,7 @@ const ScoreBoard = () => {
     playerOScore,
     setPlayerOScore,
     setAnimateWinner,
+    setWinningMoves,
   } = useBoardContext();
 
   useEffect(() => {
@@ -62,8 +63,16 @@ const ScoreBoard = () => {
           playerValues.includes(middle) &&
           playerValues.includes(last)
         ) {
-          setwinner !== null && setwinner(player);
+          setwinner && setwinner(player);
           scoreTally(player);
+          setAnimateWinner && setAnimateWinner(true);
+          setWinningMoves &&
+            setWinningMoves((currentMoves) => [
+              ...currentMoves,
+              first,
+              middle,
+              last,
+            ]);
         }
       };
 
