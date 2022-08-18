@@ -42,6 +42,10 @@ export interface PlayerScoreProps {
   score: number | null;
 }
 
+export interface SquaresCollections {
+  squares: (RefObject<HTMLButtonElement> | undefined)[];
+}
+
 export interface GameStatus {
   startGame: string;
   playerXTurn: string;

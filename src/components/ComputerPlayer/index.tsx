@@ -10,6 +10,9 @@ import { playerO } from "../../configs/contants/constant";
 // Square Options
 import { squareOptions } from "../../configs/utils/utils";
 
+// Square Collection Interface
+import { SquaresCollections } from "../../configs/interfaces/interface";
+
 // Winning Combos
 import {
   rowWinningCombos,
@@ -17,17 +20,13 @@ import {
   diagonalWinningCombos,
 } from "../../configs/utils/utils";
 
-interface Props {
-  squares: (RefObject<HTMLButtonElement> | undefined)[];
-}
-
 // Total Winning Combos
 const winningCombos = rowWinningCombos.concat(
   columnWinningCombos,
   diagonalWinningCombos
 );
 
-const ComputerPlayer = ({ squares }: Props) => {
+const ComputerPlayer = ({ squares }: SquaresCollections) => {
   const { playerXMoves, playerOMoves, currentPlayer } = useBoardContext();
 
   useEffect(() => {

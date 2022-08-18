@@ -138,6 +138,8 @@ const ScoreBoard = () => {
     setPlayerXScore,
     playerOScore,
     setPlayerOScore,
+    setAnimateWinner,
+    setWinningMoves,
   ]);
 
   const renderGameStatus = (

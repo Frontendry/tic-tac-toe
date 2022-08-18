@@ -63,7 +63,9 @@ const Square = forwardRef<RefType, SquareProps>((props, ref) => {
 
   return (
     <button
-      className={`aspect-square border-white${specialClasses(squareVal)}`}
+      className={`aspect-square flex items-center justify-center border-white${specialClasses(
+        squareVal
+      )}`}
       type="button"
       data-square-id={`square-id-${squareVal}`}
       ref={ref}

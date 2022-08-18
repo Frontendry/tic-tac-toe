@@ -1,5 +1,5 @@
 // Node Modules
-import { createContext, useContext, useState, RefObject } from "react";
+import { createContext, useContext, useState } from "react";
 
 // Configs
 import { Children, BoardContextValues } from "../configs/interfaces/interface";

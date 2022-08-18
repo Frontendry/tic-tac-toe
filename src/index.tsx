@@ -5,6 +5,7 @@ import ReactDOM from "react-dom/client";
 // Main App and CSS
 import App from "./App";
 import "./index.css";
+import "animate.css";
 
 // Performance
 import reportWebVitals from "./reportWebVitals";

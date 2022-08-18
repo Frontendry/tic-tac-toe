@@ -1,10 +1,7 @@
 import { createRef, useRef, RefObject } from "react";
 
 // Context
-import {
-  BoardContextProvider,
-  useBoardContext,
-} from "../../context/BoardContext";
+import { BoardContextProvider } from "../../context/BoardContext";
 
 // Utils
 import { squareOptions } from "../../configs/utils/utils";
@@ -13,8 +10,9 @@ import { squareOptions } from "../../configs/utils/utils";
 import RestartGame from "../RestartGame";
 import ScoreBoard from "../ScoreBoard";
 import Square from "../Square";
-import ComputerPlayer from "../ComputerPlayer";
+//import ComputerPlayer from "../ComputerPlayer";
 import ClearBoard from "../ClearBoard";
+import AnimateWinner from "../AnimateWinner";
 
 const Board = () => {
   const squareRefs = useRef<(RefObject<HTMLButtonElement> | undefined)[]>([]);
@@ -41,6 +39,8 @@ const Board = () => {
         {/* 
         // Feature coming soon...
         <ComputerPlayer squares={squareRefs.current} /> */}
+
+        <AnimateWinner squares={squareRefs.current} />
 
         <div className="flex items-center justify-center text-center mt-12">
           <ClearBoard />
